@@ -457,6 +457,7 @@ We place an order with a customer supplied with #customer_login
 """
 menu = Menu()
 customer_list = CustomerList()
+customer_list.add_customer('BenV', 'Benedict', '07965430788') # => 'Benedict (BenV) has been added as a customer'
 order1 = Order(menu)
 order1.add_to_basket('Cheeseburger')
 order1.customer_login('BenV')
@@ -584,7 +585,7 @@ customer.view_phone_number() # => '07123456789'
 Given an instance of Customer
 We can use #update_username, #update_name, #update_phone_number to update those variables 
 """
-customer = Customer('BVal', 'Benedict', '07123456789)
+customer = Customer('BVal', 'Benedict', '07123456789')
 customer.update_username('LizA') # => 'Your username has been changed to LizA'
 customer.update_name('Lizzie') # => 'Your name has been changed to Lizzie'
 customer.update_phone_number('07987654321') # => 'Your phone number has been changed to 07987654321'

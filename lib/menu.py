@@ -1,6 +1,6 @@
 class Menu:
     def __init__(self):
-        # self.items_sold: A list of dictionaries with all the items sold and the number of each sold
+        self.items_sold = {}
         self.menu_items = {
             'Burgers': [
                 {'Cheeseburger': {'Price': 10.00, 'Stock count': 5}},

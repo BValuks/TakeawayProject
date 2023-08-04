@@ -1,7 +1,7 @@
 class Basket():
     def __init__(self, menu):
         self.menu = menu
-        self.basket = {}
+        self.basket = {} # example: {'Cheeseburger': 1}
         
     def view_basket(self):
         if self.basket == {}:
@@ -47,3 +47,6 @@ class Basket():
     def empty_basket(self):
         self.basket = {}
         return 'Basket has been emptied'
+    
+    def items_ordered(self):
+        self.menu.items_sold
