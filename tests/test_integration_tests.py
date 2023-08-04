@@ -103,14 +103,24 @@ def test_empty_basket_method_resets_the_basket():
     assert order.empty_basket() == 'Basket has been emptied'
     assert order.view_basket() == 'You have no items in your basket'
 
-# """
-# Given an instance of Order
-# We can view an itemised receipt
-# """
-# def test_view_itemised_receipt():
-#     menu = Menu()
-#     order1 = Order(menu)
-#     order1.add_to_basket('Cheeseburger')
-#     order1.add_to_basket('Onion Rings')
-#     order1.add_to_basket('Cheeseburger')
-#     assert order1.view_itemised_receipt() == 'Your order: 2 x Cheesburger £20, 1 x Onion Rings £6 | Total: £26'
+"""
+Given an instance of Order
+We can view an itemised receipt
+"""
+def test_view_itemised_receipt():
+    menu = Menu()
+    order1 = Order(menu)
+    order1.add_to_basket('Cheeseburger')
+    order1.add_to_basket('Onion Rings')
+    order1.add_to_basket('Cheeseburger')
+    assert order1.view_itemised_receipt() == 'Itemised receipt:\n Cheeseburger x 2 = 20.0\n Onion Rings x 1 = 6.0\n\n Grand total = 26.0'
+
+"""
+Given an instance of Order
+We place an order and we're told to login or set up a new customer
+"""
+def test_when_placing_order_we_are_told_to_login_or_setup_new_customer():
+    menu = Menu()
+    order1 = Order(menu)
+    order1.add_to_basket('Cheeseburger')
+    assert order1.place_order() == 'Please use either customer_login or new_customer.'

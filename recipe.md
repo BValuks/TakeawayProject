@@ -212,6 +212,15 @@ class Customer:
         #   None
         pass # No code here yet
 
+    def view_username(self):
+        # Parameters:
+        #   None
+        # Returns:
+        #   A formatted string representing the value of self.userWname
+        # Side-effects:
+        #   None
+        pass # No code here yet
+
     def view_name(self):
         # Parameters:
         #   None
@@ -560,13 +569,29 @@ menu.view_items_sold() # => [{'Cheeseburger: 2}, {'Onion Rings': 1}]
 menu.reset_items_sold()
 menu.view_items_sold() # => []
 
---------------------------------------ORDER
+--------------------------------------CUSTOMER
+
 """
-Given an instance of Order
-We view an empty basket and have a message returned
+Given an instance of Customer
+We can use #view_username, #view_name, #view_phone_number to view those variables 
 """
-order1 = Order()
-order1.view_basket() # => 'You have no items in your basket'
+customer = Customer('BVal', 'Benedict', '07123456789')
+customer.view_username() # => 'BVal'
+customer.view_name() # => 'Benedict'
+customer.view_phone_number() # => '07123456789'
+
+"""
+Given an instance of Customer
+We can use #update_username, #update_name, #update_phone_number to update those variables 
+"""
+customer = Customer('BVal', 'Benedict', '07123456789)
+customer.update_username('LizA') # => 'Your username has been changed to LizA'
+customer.update_name('Lizzie') # => 'Your name has been changed to Lizzie'
+customer.update_phone_number('07987654321') # => 'Your phone number has been changed to 07987654321'
+customer.view_username() # => 'LizA'
+customer.view_name() # => 'Lizzie'
+customer.view_phone_number() # => '07987654321'
+
 
 
 

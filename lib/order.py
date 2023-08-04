@@ -1,11 +1,12 @@
 # from menu import Menu
 from lib.basket import Basket
+from lib.receipt import Receipt
 
 class Order:
     def __init__(self, menu):
         self.menu = menu
         self.basket = Basket(menu) # example: {'Cheeseburger': 1}
-        # self.receipt = Receipt(menu, self.basket)
+        self.receipt = Receipt(menu, self.basket)
 
     def view_menu(self):
         return self.menu.formatted_menu()
@@ -58,7 +59,10 @@ class Order:
         return self.basket.empty_basket()
     
     def view_itemised_receipt(self):
-        self.receipt.get_receipt()
+        return self.receipt.get_receipt()
+    
+    def place_order(self):
+        return 'Please use either customer_login or new_customer.'
 
 # menu = Menu()
 # order = Order(menu)
