@@ -49,4 +49,8 @@ class Basket():
         return 'Basket has been emptied'
     
     def items_ordered(self):
-        self.menu.items_sold
+        for item in self.basket:
+            if item not in self.menu.items_sold:
+                self.menu.items_sold[item] = self.basket[item]
+            elif item in self.menu.items_sold:
+                self.menu.items_sold[item] += 1

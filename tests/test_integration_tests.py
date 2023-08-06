@@ -229,4 +229,49 @@ def test_view_top_customers_by_visit_numbers_and_view_popular_dishes():
     assert customer_list.view_top_customers(4) == 'Top customers|\n\n * Noah (NoahV) - No. of visits: 4\n\n * Simeon (Simyarn) - No. of visits: 3\n\n * Benedict (BVal) - No. of visits: 2\n\n * Lizzie (LizA) - No. of visits: 1\n'
 
     order1 = Order(menu, customer_list)
-    assert order1.view_popular_items() == 'Top items: 1. Coke, 2. Chicken Burger, 3. Cheeseburger'
+    assert order1.view_popular_items() == 'Top items: \n1. Coke\n2. Chicken Burger\n3. Cheeseburger\n'
+
+
+"""
+Given an instance of CustomerList
+We can add some customers and view them as a list and by searching by customer and then remove a customer
+"""
+def test_add_customers_to_customer_list_view_them_and_removed_them():
+    customer_list = CustomerList()
+    assert customer_list.add_customer('BVal', 'Benedict', '07965430788') == 'Benedict (BVal) has been added as a customer'
+    assert customer_list.add_customer('LizA', 'Lizzie', '02084536661') == 'Lizzie (LizA) has been added as a customer'
+    assert customer_list.view_customers() == ['Benedict (BVal)', 'Lizzie (LizA)']
+    assert customer_list.view_customer_by_username('LizA') == 'Username: LizA, Name: Lizzie, Phone number: 02084536661, Number of visits: 0'
+    assert customer_list.remove_customer('BVal') == 'Benedict (BVal) has been removed from the customer list'
+    assert customer_list.view_customers() == ['Lizzie (LizA)']
+
+"""
+Given an instance of CustomerList
+Attempting to add a new customer with a username that is not unique throws an error
+"""
+def test_attempt_to_add_new_customer_with_a_name_that_is_not_unique():
+    customer_list = CustomerList()
+    customer_list.add_customer('BenV', 'Benedict', '07965430788')
+    customer_list.add_customer('LizA', 'Lizzie', '02084536661')
+    with pytest.raises(Exception) as err:
+        customer_list.add_customer('BenV', 'Benjamin', '01805787254')
+    error_message = str(err.value)
+    assert error_message == 'Username already in use. Please choose another.'
+
+"""
+Given an instance of Menu
+We can use #view_items_sold to view items and amount of items sold and use #reset_items_sold to reset the items sold list
+"""
+def test_view_items_sold_and_reset_the_list():
+    menu = Menu()
+    customer_list = CustomerList()
+    order = Order(menu, customer_list)
+    order.add_to_basket('Cheeseburger')
+    order.add_to_basket('Onion Rings')
+    order.add_to_basket('Cheeseburger')
+    assert order.view_basket() == 'The following items are in your basket: 2 x Cheeseburger, 1 x Onion Rings'
+    order.new_customer('BVal', 'Benedict', '07123456789')
+    order.place_order()
+    assert menu.view_items_sold() == {'Cheeseburger': 2, 'Onion Rings': 1}
+    assert menu.reset_items_sold() == 'Items sold reset'
+    assert menu.view_items_sold() == {}

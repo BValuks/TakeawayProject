@@ -2,6 +2,7 @@
 # from basket import Basket
 # from receipt import Receipt
 # from customer import Customer
+# from customer_list import CustomerList
 from lib.basket import Basket
 from lib.receipt import Receipt
 from lib.customer import Customer
@@ -19,51 +20,16 @@ class Order:
         return self.menu.formatted_menu()
     
     def view_popular_items(self):
-        pass
+        return self.menu.popular_items()
     
     def add_to_basket(self, item):
         return self.basket.add_to_basket(item)
-        # for submenu in self.menu.menu_items.items():
-        #     for menu_item in submenu[1]:
-        #         if item in list(menu_item):
-        #             if menu_item[item]['Stock count'] > 0:
-        #                 if item not in self.basket:
-        #                     self.basket[item] = 1
-        #                     menu_item[item]['Stock count'] -= 1
-        #                 else:
-        #                     self.basket[item] += 1
-        #                     menu_item[item]['Stock count'] -= 1
-        #                 return f'{item} has been added to your basket'
-        #             else:
-        #                 raise Exception('Item out of stock.')
     
     def remove_from_basket(self, item):
         return self.basket.remove_from_basket(item)
-        # if self.basket == {}:
-        #     raise Exception('No items found in basket')
-        # elif item in list(self.basket):
-        #     if self.basket[item] > 1:
-        #         self.basket[item] -= 1
-        #     else:
-        #         del self.basket[item]
-        #     for submenu in self.menu.menu_items.items():
-        #         for menu_item in submenu[1]:
-        #             if list(menu_item)[0] == item:
-        #                 menu_item[item]['Stock count'] += 1
-        #             else:
-        #                 pass
-        #     return f'{item} has been removed from your basket'
-        # else:
-        #     return 'Item not found in basket'
 
     def view_basket(self):
         return self.basket.view_basket()
-        # if self.basket == {}:
-        #     return 'You have no items in your basket'
-        # output = f'The following items are in your basket: '
-        # items_string = ', '.join(f'{str(value)} x {key}'  for key, value in self.basket.items())
-        # output += items_string
-        # return output
     
     def empty_basket(self):
         return self.basket.empty_basket()

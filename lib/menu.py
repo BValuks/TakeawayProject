@@ -31,21 +31,18 @@ class Menu:
                     figures = list(menu_item[1].items())
                     formatted_menu += f'\n - {menu_item[0]}, Price: {figures[0][1]}, Available: {figures[1][1]} '
         return formatted_menu
+    
+    def popular_items(self):
+        output_string = 'Top items: \n'
+        sorted_items = sorted(self.items_sold.items(), key=lambda item: item[1], reverse=True)
+        if len(sorted_items) > 3:
+            for i in range(3):
+                output_string += f'{i + 1}. {sorted_items[i][0]}\n'
+        return output_string
 
     def view_items_sold(self):
-        # Parameters:
-        #   None
-        # Returns:
-        #   A list of dictionaries containing the items and amounts of items sold
-        # Side-effects:
-        #   None
-        pass # No code here yet
+        return self.items_sold
 
     def reset_items_sold(self):
-        # Parameters:
-        #   None
-        # Returns:
-        #   A string stating that the items sold list has been reset
-        # Side-effects:
-        #   Assigns an empty list to self.items_sold
-        pass # No code here yet
+        self.items_sold = {}
+        return 'Items sold reset'
