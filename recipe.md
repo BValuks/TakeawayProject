@@ -532,8 +532,6 @@ customer_list.view_top_customers(4) # => 'Top customers| Noah (NoahV) - No. of v
 order1 = Order(menu)
 order1.view_popular_items() # => 'Top items: 1. Coke, 2. Chicken Burger, 3. Cheeseburger'
 
-REMOVE CUSTOMER FROM CUSTOMERLIST TEST
-
 """
 Given an instance of CustomerList
 Attempting to add a new customer with a username that is not unique throws an error
