@@ -1,23 +1,23 @@
 1. Describe the Problem
-As a customer
+- As a customer
 So that I can check if I want to order something
 I would like to see a list of dishes with prices.
 
-As a customer
+- As a customer
 So that I can order the meal I want
 I would like to be able to select some number of several available dishes.
 
-As a customer
+- As a customer
 So that I can verify that my order is correct
 I would like to see an itemised receipt with a grand total.
 
-As a customer
+- As a customer
 So that I am reassured that my order will be delivered on time
-I would like to receive a text such as Thank you! Your order was placed and will be delivered before 18:52 after I have ordered.
+I would like to receive a text such as "Thank you! Your order was placed and will be delivered before 18:52" after I have ordered.
 
                                             PERSONAL ORGANISER
 
-
+```python
 
                ┌─────────────────────────┐
                │ Menu                    │
@@ -64,7 +64,7 @@ I would like to receive a text such as Thank you! Your order was placed and will
                               │                     │
                               └─────────────────────┘
 
-
+```
 
 
 
@@ -342,6 +342,7 @@ Create examples of the classes being used together in different situations and c
 Given an instance of Order
 We can view the menu
 """
+
 menu = Menu()
 order1 = Order(menu)
 order1.view_menu() # => {menu_items}
@@ -350,6 +351,7 @@ order1.view_menu() # => {menu_items}
 Given an instance of Order
 We can add an item and view it in the basket
 """
+
 menu = Menu()
 order1 = Order(menu)
 order1.add_to_basket('Cheeseburger') # => 'Cheeseburger has been added to your basket'
@@ -362,6 +364,7 @@ order1.view_basket() # => 'The following items are in your basket: 2 x Cheesebur
 Given an instance of Order
 We can add an item to the basket and see that the available stock has decreased when we view menu
 """
+
 menu = Menu()
 order1 = Order(menu)
 order1.view_menu() # => {'Cheeseburger': {'Price': 10.00, 'Stock': 5}}
@@ -372,6 +375,7 @@ order1.view_menu() # => {'Cheeseburger': {'Price': 10.00, 'Stock': 4}}
 Given an instance of Order
 We try and add an item with a stock count of zero and it raises an exception
 """
+
 menu = Menu()
 order1 = Order(menu)
 order1.view_menu() # => {'Pulled Pork Burger': {'Price': 12.00, 'Stock': 0}}
@@ -381,6 +385,7 @@ order1.add_to_basket('Pulled Pork Burger') # => 'Item out of stock.'
 Given an instance of Order
 We can remove an item from the basket and the stock count increases to reflect this
 """
+
 menu = Menu()
 order1 = Order(menu)
 order1.view_menu() # => {'Cheeseburger': {'Price': 10.00, 'Stock': 5}}
@@ -395,6 +400,7 @@ order1.view_menu() # => {'Cheeseburger': {'Price': 10.00, 'Stock': 5}}
 Given an instance of Order
 If we try to remove an item that isn't in the basket, it throws and error
 """
+
 menu = Menu()
 order = Order(menu)
 order.add_to_basket('Onion Rings')
@@ -404,6 +410,7 @@ order.remove_from_basket('Cheeseburger') # => 'The item is not in your basket'
 Given an instance of Order
 If we try to remove an item if the basket is empty, it throws an error
 """
+
 menu = Menu()
 order = Order(menu)
 order.remove_from_basket('Cheeseburger') # => 'Basket is empty'
@@ -412,6 +419,7 @@ order.remove_from_basket('Cheeseburger') # => 'Basket is empty'
 Given an instance of Order
 We can view an itemised receipt
 """
+
 menu = Menu()
 order1 = Order(menu)
 order1.add_to_basket('Cheeseburger')
@@ -423,6 +431,7 @@ order1.view_itemised_receipt() # => 'Your order: 2 x Cheesburger £20, 1 x Onion
 Given an instance of Order
 We place an order and we're told to login or set up a new customer
 """
+
 menu = Menu()
 order1 = Order(menu)
 order1.add_to_basket('Cheeseburger')
@@ -432,6 +441,7 @@ order1.place_order() # => 'Please use either customer_login or new_customer.'
 Given an instance of CustomerList
 We can add some customers and view them as a list and by searching by customer and then remove a customer
 """
+
 customer_list = CustomerList()
 customer_list.add_customer('BVal', 'Benedict', '07965430788') # => 'Benedict has been added as a customer'
 customer_list.add_customer('LizA' 'Lizzie', '02084536661') # => 'Lizzie has been added as a customer'
@@ -444,6 +454,7 @@ customer_list.view_customers() # => ['LizA']
 Given an instance of Order
 We place an order with a customer supplied with #new_customer
 """
+
 menu = Menu()
 customer_list = CustomerList()
 order1 = Order(menu)
@@ -455,6 +466,7 @@ order1.place_order() # => 'Thank you for your order Benedict. You should receive
 Given an instance of Order
 We place an order with a customer supplied with #customer_login
 """
+
 menu = Menu()
 customer_list = CustomerList()
 customer_list.add_customer('BenV', 'Benedict', '07965430788') # => 'Benedict (BenV) has been added as a customer'
@@ -467,6 +479,7 @@ order1.place_order() # => 'Thank you for your order Benedict. You should receive
 Given an instance of CustomerList
 We can call #view_top_customers and see the top customers by number of visits and see popular dishes
 """
+
 menu = Menu()
 customer_list = CustomerList()
 customer_list.add_customer('BenV' 'Benedict', '07965430788')
@@ -536,6 +549,7 @@ order1.view_popular_items() # => 'Top items: 1. Coke, 2. Chicken Burger, 3. Chee
 Given an instance of CustomerList
 Attempting to add a new customer with a username that is not unique throws an error
 """
+
 customer_list = CustomerList()
 customer_list.add_customer('BenV' 'Benedict', '07965430788')
 customer_list.add_customer('LizA', 'Lizzie', '02084536661')
@@ -545,6 +559,7 @@ customer_list.add_customer('BenV' 'Benjamin', '01805787254') # => 'Username alre
 Given an instance of Menu
 We can use #view_items_sold to view items and amount of items sold and use #reset_items_sold to reset the items sold list
 """
+
 menu = Menu()
 order = Order(menu)
 order.add_to_basket('Cheeseburger')
@@ -564,6 +579,7 @@ Create examples, where appropriate, of the behaviour of each relevant class at a
 Given an instance of Menu
 We view view items sold and then reset the list
 """
+
 menu = Mock()
 menu.items_sold.return_value = [{'Cheeseburger: 2}, {'Onion Rings': 1}]
 menu.view_items_sold() # => [{'Cheeseburger: 2}, {'Onion Rings': 1}]
@@ -576,6 +592,7 @@ menu.view_items_sold() # => []
 Given an instance of Customer
 We can use #view_username, #view_name, #view_phone_number to view those variables 
 """
+
 customer = Customer('BVal', 'Benedict', '07123456789')
 customer.view_username() # => 'BVal'
 customer.view_name() # => 'Benedict'
@@ -585,6 +602,7 @@ customer.view_phone_number() # => '07123456789'
 Given an instance of Customer
 We can use #update_username, #update_name, #update_phone_number to update those variables 
 """
+
 customer = Customer('BVal', 'Benedict', '07123456789')
 customer.update_username('LizA') # => 'Your username has been changed to LizA'
 customer.update_name('Lizzie') # => 'Your name has been changed to Lizzie'
